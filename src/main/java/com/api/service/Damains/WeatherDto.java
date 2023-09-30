@@ -1,5 +1,7 @@
 package com.api.service.Damains;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -32,6 +34,7 @@ public record WeatherDto(
     String sunset,
 
     @NotBlank
+    @JsonProperty("moon_phase")
     String moonPhase
 ) {
     
