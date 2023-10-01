@@ -1,4 +1,4 @@
-package com.api.service.Damains;
+package com.api.service.Damains.Weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

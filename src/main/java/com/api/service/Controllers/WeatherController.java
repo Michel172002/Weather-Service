@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.api.service.Damains.WeatherDto;
-import com.api.service.Damains.WeatherExibirDadosDto;
+import com.api.service.Damains.Weather.WeatherDto;
+import com.api.service.Damains.Weather.WeatherExibirDadosDto;
 import com.api.service.Services.WeatherService;
 
 import jakarta.transaction.Transactional;
