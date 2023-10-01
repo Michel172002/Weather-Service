@@ -2,13 +2,15 @@ package com.api.service.Damains.Weather;
 
 import java.time.LocalDateTime;
 
+import com.api.service.Damains.City.CityExibirDadosDto;
+
 public record WeatherExibirDadosDto(
     Long id,
+    CityExibirDadosDto city,
     int temp,
     String date,
     String description,
     String currently,
-    String city,
     int humidity,
     float rain,
     String sunrise,
@@ -18,7 +20,7 @@ public record WeatherExibirDadosDto(
 
 ) {
     public WeatherExibirDadosDto(WeatherModel dados){
-        this(dados.getId(), dados.getTemp(), dados.getDate(), dados.getDescription(), dados.getCurrently(), dados.getCity(),
+        this(dados.getId(), new CityExibirDadosDto(dados.getCity()),dados.getTemp(), dados.getDate(), dados.getDescription(), dados.getCurrently(),
          dados.getHumidity(), dados.getRain(), dados.getSunrise(), dados.getSunset(), dados.getMoonPhase(), dados.getCreateAt());
     }
 }

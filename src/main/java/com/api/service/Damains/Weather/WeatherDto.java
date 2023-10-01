@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 
 public record WeatherDto(
     @NotNull
+    Long idCity,
+
+    @NotNull
     int temp,
 
     @NotBlank
@@ -17,9 +20,6 @@ public record WeatherDto(
 
     @NotBlank
     String currently,
-
-    @NotBlank
-    String city,
 
     @NotNull
     int humidity,
