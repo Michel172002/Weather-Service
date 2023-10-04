@@ -3,6 +3,7 @@ package com.api.service.Damains.Weather;
 import java.time.LocalDateTime;
 
 import com.api.service.Damains.City.CityModel;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,8 @@ public class WeatherModel {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ManyToOne
     @JoinColumn(name = "id_city")
     private CityModel city;
 
