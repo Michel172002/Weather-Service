@@ -32,4 +32,10 @@ public class CityModel {
         this.name = dados.name();
         this.creataAt = LocalDateTime.now();
     }
+
+    public void EditarDados(CityEditarDados dados){
+        if(dados.nome() != null){
+            this.name = dados.nome();
+        }
+    }
 }
