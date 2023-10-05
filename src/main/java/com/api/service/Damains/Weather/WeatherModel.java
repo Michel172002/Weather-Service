@@ -28,12 +28,12 @@ public class WeatherModel {
     @JoinColumn(name = "id_city")
     private CityModel city;
 
-    private int temp;
+    private Integer temp;
     private String date;
     private String description;
     private String currently;
-    private int humidity;
-    private float rain;
+    private Integer humidity;
+    private Float rain;
     private String sunrise;
     private String sunset;
     private String moonPhase;
@@ -52,5 +52,39 @@ public class WeatherModel {
         this.sunset = dados.sunset();
         this.moonPhase = dados.moonPhase();
         this.createAt = LocalDateTime.now();
+    }
+
+    public void EditarDados(CityModel city, WeatherEditarDadosDto dados){
+        if(city != null){
+            this.city = city;
+        }
+        if(dados.temp() != null){
+            this.temp = dados.temp();
+        }
+        if(dados.date() != null){
+            this.date = dados.date();
+        }
+        if(dados.description() != null){
+            this.description = dados.description();
+        }
+        if(dados.currently() != null){
+            this.currently = dados.currently();
+        }
+        if(dados.humidity() != null){
+            this.humidity = dados.humidity();
+        }
+        if(dados.rain() != null){
+            this.rain = dados.rain();
+        }
+        if(dados.sunrise() != null){
+            this.sunrise = dados.sunrise();
+        }
+        if(dados.sunset() != null){
+            this.sunset = dados.sunset();
+        }
+        if(dados.moonPhase() != null){
+            this.moonPhase = dados.moonPhase();
+        }
+        
     }
 }

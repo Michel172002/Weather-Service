@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.api.service.Damains.Weather.WeatherDto;
+import com.api.service.Damains.Weather.WeatherEditarDadosDto;
 import com.api.service.Damains.Weather.WeatherExibirDadosDto;
 import com.api.service.Damains.Weather.WeatherModel;
 import com.api.service.Repositories.CityRepository;
@@ -58,5 +59,35 @@ public class WeatherService {
         }else{
             throw new ValidationException("Não foi encontrados dados da cidade informada!");
         }
+    }
+
+    public WeatherExibirDadosDto excluirWeather(Long id){
+        if(!weatherRepository.existsById(id)){
+            throw new ValidationException("Não existe Weather com esse id!");
+        }
+        var weather = weatherRepository.getReferenceById(id);
+        weatherRepository.delete(weather);
+
+        return new WeatherExibirDadosDto(weather);
+    }
+
+    public WeatherExibirDadosDto editarWeather(Long id, WeatherEditarDadosDto dados){
+        if(!weatherRepository.existsById(id)){
+            throw new ValidationException("Não Existe Weather com esse id!");
+        }
+        var weather = weatherRepository.getReferenceById(id);
+
+        if(dados.idCity() != null){
+            if(!cityRepository.existsById(dados.idCity())){
+                throw new ValidationException("Não existe City com esse id!");
+            }
+            var city = cityRepository.getReferenceById(dados.idCity());
+            
+            weather.EditarDados(city, dados);
+        }else{
+            weather.EditarDados(null, dados);
+        }
+
+        return new WeatherExibirDadosDto(weather);
     }
 }

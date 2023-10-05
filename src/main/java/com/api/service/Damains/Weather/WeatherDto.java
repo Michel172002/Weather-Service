@@ -10,7 +10,7 @@ public record WeatherDto(
     Long idCity,
 
     @NotNull
-    int temp,
+    Integer temp,
 
     @NotBlank
     String date,
@@ -22,7 +22,7 @@ public record WeatherDto(
     String currently,
 
     @NotNull
-    int humidity,
+    Integer humidity,
 
     @NotNull
     float rain,

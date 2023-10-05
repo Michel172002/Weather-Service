@@ -10,15 +10,18 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.api.service.Damains.Weather.WeatherDto;
+import com.api.service.Damains.Weather.WeatherEditarDadosDto;
 import com.api.service.Damains.Weather.WeatherExibirDadosDto;
 import com.api.service.Damains.Weather.WeatherModel;
 import com.api.service.Services.WeatherService;
@@ -57,5 +60,21 @@ public class WeatherController {
         var weatherAtualizado = weatherService.ultimaAtualizacao(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(weatherAtualizado);
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<WeatherExibirDadosDto> editarWeather(@PathVariable(value = "id") Long id, @RequestBody WeatherEditarDadosDto dados){
+        var weatherEditado = weatherService.editarWeather(id, dados);
+
+        return ResponseEntity.status(HttpStatus.OK).body(weatherEditado);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<WeatherExibirDadosDto> excluirWeather(@PathVariable(value = "id") Long id){
+        var weatherExcluido = weatherService.excluirWeather(id);
+
+        return ResponseEntity.status(HttpStatus.OK).body(weatherExcluido);
     }
 }
